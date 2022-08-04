@@ -9,7 +9,12 @@ function rand(min, max) {
 // Task 1
 
 let answ = rand(0, 4)/rand(1, 4);
-console.log('Task 1: ',answ.toFixed(2));
+
+//If answ less than 1 It means we divided smaller number by larger which should not be allowed.
+if(answ >= 1)
+    console.log('Task 1: ',answ.toFixed(2));
+else
+    console.log('Task 1:  First number was smaller than second');
 
 // Task 2
 
@@ -86,4 +91,3 @@ for(let i = 0;i<3;i++){
 const answ2 = sum/decCount;
 
 console.log('Task 7: ',`Average 1: ${answ1.toFixed(2)} | Average 2: ${answ2.toFixed(2)}`);
-
