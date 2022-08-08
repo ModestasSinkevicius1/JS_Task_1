@@ -9,6 +9,7 @@
     "random": "nodemon ./random.js",
     "condition": "nodemon ./condition.js",
     "loop": "nodemon ./loop.js",
+    "func": "nodemon ./function.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
