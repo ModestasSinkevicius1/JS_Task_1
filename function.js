@@ -12,6 +12,14 @@ function Print(text){
 
 console.log(`   ${Print('Hello')}`);
 
+//Or
+
+function Print3(text){
+    console.log(`   ${text}`);
+}
+
+Print3('Goodbye');
+
 //Task 2
 
 console.log('Task 2:');
@@ -30,7 +38,7 @@ Print2('Yo', 3);
 console.log('Task 4:');
 
 function CountNormalNumber(number){
-    while((number%2 == 0)||(number == 2) && (number == 1)){
+    while((number % 2 == 0)||(number == 2) && (number == 1)){
         if(number != 2){
             console.log(`   ${number}`);           
         }
@@ -47,26 +55,18 @@ console.log('Task 5:');
 function arrayGenerator(min, max){
     let count = 0;
     const numbers = [];
+
     while(count < 100){
         let number = rand(min, max);
         if(number % 2 == 0)
         {
-            numbers[count] = number;
+            numbers.push(number);
             count++;
         }
     }
 
-    let temp = 0;
-    for(let j = 0;j<numbers.length-1;j++){
-        for(let i = 1;i<numbers.length;i++){
-            if(numbers[i-1]<numbers[i]){
-                temp = numbers[i - 1];
-                numbers[i - 1] = numbers[i];
-                numbers[i] = temp;
-            }
-        }
-    }
-
+    numbers.sort((a, b) => b - a);
+    
     return numbers;
 }
 
@@ -79,23 +79,13 @@ console.log('Task 6:');
 function arrayPrimaryNumberGenerator(min, max){
     let count = 0;
     const numbers = [];
+
     while(count < 100){
         let number = rand(min, max);
         if(number % 2 != 0)
         {
             numbers[count] = number;
             count++;
-        }
-    }
-
-    let temp = 0;
-    for(let j = 0;j<numbers.length-1;j++){
-        for(let i = 1;i<numbers.length;i++){
-            if(numbers[i-1]<numbers[i]){
-                temp = numbers[i - 1];
-                numbers[i - 1] = numbers[i];
-                numbers[i] = temp;
-            }
         }
     }
 
@@ -114,7 +104,7 @@ function generateArray2(){
 
     for(let i = 0;i<arrayLength;i++){
         if(i !== arrayLength - 1)
-            list[i] = rand(0, 10);
+            list.push(rand(0, 10));
         else{
             const list2 = new Array(arrayLength);
             for(let j = 0; j<arrayLength-1;j++){
@@ -131,20 +121,26 @@ console.log(generateArray2());
 
 //Task 8
 
-console.log('Task 8:');
+console.log( 'Task 8:');
 
 function removeIfNotSumToArray(list){
+
     for(let i = 0;i<list.length;i++){
-        if(i !== list.length-1)
-            if(list[i] !== list.length)
-                console.log(list[i]);
-        else{
-            for(let j = 0;j<list.length;j++){
-                if(list[i,j] !== list.length)
+        if(i !== list.length-1){
+            if(list[i] !== list.length){
+                console.log( list[i] );
+            }
+        }
+        else {
+            console.log('Sub');
+            for(let j = 0;j<list.length;j++){               
+                if(list[i,j] !== list.length){
                     console.log(list[i][j]);
+                }
             }
         }
     }
+
     return list;
 }
 
@@ -156,28 +152,17 @@ console.log('Task 9:');
 
 function addOddNumberToArray(){
     const list = [rand(1, 33), rand(1, 33), rand(1, 33)];
-
-    let isEven = false;
+    
     let step = 0;
-    let iteration = 0;
 
-    while(iteration < 1000){
-        for(let i = 0 + step;i < list.length;i++){
-            if(list[i] % 2 !== 0){
-                isEven = true;         
-                break;
-            }
-        }
-        if(isEven){
+    for(let i = step;i < list.length;i++){
+        if(list[i] % 2 !== 0){         
             list.push(rand(1, 33))
-            isEven = false;
-            step += 3;
+            step++;
+            i = step;
         }
-        else{
-            break;
-        }
-        iteration++;
     }
+
     return list;
 }
 
@@ -191,7 +176,7 @@ function generateArray3(){
     const list = new Array(10);
     let average = 0;
     let avgCount = 0;
-    let max = Infinity;
+    let max = 0;
 
     for(let i = 0;i < list.length;i++){
         list[i] = new Array(10);
@@ -208,13 +193,10 @@ function generateArray3(){
             average /= avgCount;
         }
         if(avgCount !== 0 && average < 70){
+            list.forEach(a => max = Math.max(...a));
+
             for(let j = 0;j<list.length;j++){
-                if(list[i][j] < max){
-                    max = list[i][j];
-                }
-            }
-            for(let j = 0;j<list.length;j++){
-                if(list[i][j]===max){
+                if(list[i][j] === max){
                     list[i][j] += 3;
                 }
             }
