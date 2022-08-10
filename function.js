@@ -180,9 +180,8 @@ function generateArray3(){
 
     for(let i = 0;i < list.length;i++){
         list[i] = new Array(10);
-        for(let j = 0;j<list.length;j++){
-            list[i][j] = rand(1, 100);
-        }
+        list[i] = [...list[i]].map(_ => rand(1, 100));
+
         for(let j = 0;j<list.length;j++){
             if(list[i][j]%2 !== 0){
                 average += list[i][j];
